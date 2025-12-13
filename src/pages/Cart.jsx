@@ -1,31 +1,25 @@
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext.jsx";
+import { CartContext } from "../context/CartContext";
 
 function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
-
   return (
-    <div className="cart-page">
-      <h1>Your Cart</h1>
+    <section className="products">
+      <h2>Your Cart</h2>
 
-      {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <>
-          {cart.map((item, index) => (
-            <div key={index} className="cart-item">
-              <span>{item.name}</span>
-              <span>KSh {item.price}</span>
-              <button onClick={() => removeFromCart(index)}>Remove</button>
-            </div>
-          ))}
+      {cart.length === 0 && <p>Your cart is empty.</p>}
 
-          <h2>Total: KSh {total}</h2>
-        </>
-      )}
-    </div>
+      {cart.map((item, index) => (
+        <div key={index} className="item">
+          <p>{item.name}</p>
+          <span>KSh {item.price}</span>
+          <button className="add-btn" onClick={() => removeFromCart(index)}>
+            Remove
+          </button>
+        </div>
+      ))}
+    </section>
   );
 }
 
