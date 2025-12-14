@@ -111,3 +111,28 @@
   cursor: pointer;
   width: 100%;
 }
+/* CATEGORIES */
+.categories {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+}
+
+.category-card {
+  background: white;
+  padding: 16px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #d63384;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.25);
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  background: #ff66b3;
+  color: white;
+  transform: translateY(-4px);
+}

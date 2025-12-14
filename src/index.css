@@ -21,3 +21,14 @@ body {
   background: #fff0f6;
   color: #333;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  background: #fff0f6;
+  color: #333;
+}
