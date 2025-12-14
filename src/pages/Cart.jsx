@@ -1,3 +1,4 @@
+import "./Cart.css";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -7,21 +8,23 @@ function Cart() {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   function checkoutWhatsApp() {
-    if (cart.length === 0) return;
+  if (cart.length === 0) return;
 
-    const message = `
-Hello, I would like to order:
+  let message = "Hello, I would like to order:\n\n";
 
-${cart.map(item => `• ${item.name} - KSh ${item.price}`).join("\n")}
+  cart.forEach((item, index) => {
+    message += `${index + 1}. ${item.name} - KSh ${item.price}\n`;
+  });
 
-Total: KSh ${total}
-`;
+  message += `\nTotal: KSh ${total}`;
 
-    const phoneNumber = "254745099596";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const phoneNumber = "254745099596"; // real number
+  const encodedMessage = encodeURIComponent(message);
 
-    window.open(url, "_blank");
-  }
+  const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+  window.location.href = url;
+}
 
   return (
     <div className="cart-page">

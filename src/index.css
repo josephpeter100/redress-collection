@@ -10,3 +10,14 @@ html, body {
   font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #ffeef7;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+body {
+  background: #fff0f6;
+  color: #333;
+}

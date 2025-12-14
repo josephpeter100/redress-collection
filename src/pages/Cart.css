@@ -1,0 +1,23 @@
+.cart-page {
+  padding: 20px;
+}
+
+.cart-item {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: #25d366;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+}
