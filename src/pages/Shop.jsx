@@ -1,5 +1,5 @@
-import ProductCard from "../components/ProductCard";
 import products from "../data/products";
+import ProductCard from "../components/ProductCard";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -11,13 +11,13 @@ function Shop() {
       <h2>Shop Redress Collection</h2>
 
       <div className="grid">
-        {products.map(product => (
+        {products.map((item) => (
           <ProductCard
-            key={product.id}
-            image={product.image}
-            name={product.name}
-            price={product.price}
-            onAdd={() => addToCart(product)}
+            key={item.id}
+            image={item.image}
+            name={item.name}
+            price={item.price}
+            onAdd={() => addToCart(item)}
           />
         ))}
       </div>

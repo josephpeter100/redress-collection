@@ -1,10 +1,13 @@
-function Categories() {
+const categories = ["All", "Dresses", "Tops", "Bags"];
+
+function Categories({ setFilter }) {
   return (
     <section className="categories">
-      <div className="category-card">Dresses</div>
-      <div className="category-card">Tops</div>
-      <div className="category-card">Bags</div>
-      <div className="category-card">Shoes</div>
+      {categories.map((cat) => (
+        <button key={cat} onClick={() => setFilter(cat)}>
+          {cat}
+        </button>
+      ))}
     </section>
   );
 }

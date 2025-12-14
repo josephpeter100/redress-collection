@@ -232,3 +232,13 @@ h2 {
 .add-btn:hover {
   background: #e64980;
 }
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
