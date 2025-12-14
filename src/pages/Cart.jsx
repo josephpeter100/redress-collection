@@ -6,7 +6,7 @@ function Cart() {
 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
   <a
-  href={`https://wa.me/2547XXXXXXXX?text=Hello,%20I%20would%20like%20to%20order:%0A${cart
+  href={`https://wa.me/254745099596?text=Hello,%20I%20would%20like%20to%20order:%0A${cart
     .map(item => `${item.name} - KSh ${item.price}`)
     .join("%0A")}%0ATotal:%20KSh%20${total}`}
   target="_blank"
