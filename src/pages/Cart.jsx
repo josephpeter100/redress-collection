@@ -5,38 +5,48 @@ function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
-  <a
-  href={`https://wa.me/254745099596?text=Hello,%20I%20would%20like%20to%20order:%0A${cart
-    .map(item => `${item.name} - KSh ${item.price}`)
-    .join("%0A")}%0ATotal:%20KSh%20${total}`}
-  target="_blank"
-  rel="noreferrer"
->
-  <button className="add-btn" style={{ marginTop: "15px" }}>
-    Checkout via WhatsApp
-  </button>
-</a>
+
+  function checkoutWhatsApp() {
+    if (cart.length === 0) return;
+
+    const message = `
+Hello, I would like to order:
+
+${cart.map(item => `• ${item.name} - KSh ${item.price}`).join("\n")}
+
+Total: KSh ${total}
+`;
+
+    const phoneNumber = "254745099596";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+  }
 
   return (
-    <section className="products">
+    <div className="cart-page">
       <h2>Your Cart</h2>
 
       {cart.length === 0 && <p>Your cart is empty.</p>}
 
       {cart.map((item, index) => (
-        <div key={index} className="item">
-          <p>{item.name}</p>
+        <div key={index} className="cart-item">
+          <span>{item.name}</span>
           <span>KSh {item.price}</span>
-          <button className="add-btn" onClick={() => removeFromCart(index)}>
-            Remove
-          </button>
+          <button onClick={() => removeFromCart(index)}>Remove</button>
         </div>
       ))}
 
       {cart.length > 0 && (
-        <h3 style={{ marginTop: "20px" }}>Total: KSh {total}</h3>
+        <>
+          <h3>Total: KSh {total}</h3>
+
+          <button className="whatsapp-btn" onClick={checkoutWhatsApp}>
+            Checkout via WhatsApp
+          </button>
+        </>
       )}
-    </section>
+    </div>
   );
 }
 
