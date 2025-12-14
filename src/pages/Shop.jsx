@@ -1,4 +1,5 @@
 import ProductCard from "../components/ProductCard";
+import products from "../data/products";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -10,26 +11,15 @@ function Shop() {
       <h2>Shop Redress Collection</h2>
 
       <div className="grid">
-        <ProductCard
-          image="https://i.imgur.com/eN9lueN.jpeg"
-          name="Pink Silk Dress"
-          price={650}
-          onAdd={() => addToCart({ name: "Pink Silk Dress", price: 650 })}
-        />
-
-        <ProductCard
-          image="https://i.imgur.com/3qWcLxg.jpeg"
-          name="Soft White Top"
-          price={300}
-          onAdd={() => addToCart({ name: "Soft White Top", price: 300 })}
-        />
-
-        <ProductCard
-          image="https://i.imgur.com/Yx2Jssz.jpeg"
-          name="Mini Shoulder Bag"
-          price={500}
-          onAdd={() => addToCart({ name: "Mini Shoulder Bag", price: 500 })}
-        />
+        {products.map(product => (
+          <ProductCard
+            key={product.id}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            onAdd={() => addToCart(product)}
+          />
+        ))}
       </div>
     </section>
   );
