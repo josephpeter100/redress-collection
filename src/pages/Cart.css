@@ -21,3 +21,19 @@
   border-radius: 14px;
   font-size: 16px;
 }
+.whatsapp-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: #25d366;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.whatsapp-btn:hover {
+  background: #1ebe5d;
+}
