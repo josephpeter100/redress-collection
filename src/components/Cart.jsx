@@ -1,48 +1,65 @@
-function Cart({ cart, close, remove }) {
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+
+function Cart() {
+  const {
+    cart,
+    increaseQty,
+    decreaseQty,
+    removeFromCart,
+    getTotal,
+  } = useContext(CartContext);
 
   function checkoutWhatsApp() {
-    const phoneNumber = "254114448895";
+    const phoneNumber = "2547XXXXXXXX"; // replace
 
     let message = "Hello, I would like to order:\n\n";
 
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} - KSh ${item.price}\n`;
+    cart.forEach((item, i) => {
+      message += `${i + 1}. ${item.name} x${item.qty} - KSh ${
+        item.price * item.qty
+      }\n`;
     });
 
-    const encodedMessage = encodeURIComponent(message);
+    message += `\nTotal: KSh ${getTotal()}`;
 
-    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-    window.open(url, "_blank");
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
   }
 
   return (
-    <div className="cart-popup">
-      <div className="cart-box">
-        <h3>Your Cart</h3>
+    <div className="cart-page">
+      <h2>Your Cart</h2>
 
-        <button className="close-btn" onClick={close}>×</button>
+      {cart.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <>
+          {cart.map((item, index) => (
+            <div className="cart-row" key={index}>
+              <p>{item.name}</p>
 
-        {cart.length === 0 ? (
-          <p>Your cart is empty</p>
-        ) : (
-          <>
-            {cart.map((item, index) => (
-              <div className="cart-item" key={index}>
-                <p>{item.name}</p>
-                <span>KSh {item.price}</span>
-                <button className="remove-btn" onClick={() => remove(index)}>
-                  Remove
-                </button>
+              <div className="qty-controls">
+                <button onClick={() => decreaseQty(index)}>-</button>
+                <span>{item.qty}</span>
+                <button onClick={() => increaseQty(index)}>+</button>
               </div>
-            ))}
 
-            <button className="whatsapp-btn" onClick={checkoutWhatsApp}>
-              Checkout via WhatsApp
-            </button>
-          </>
-        )}
-      </div>
+              <span>KSh {item.price * item.qty}</span>
+
+              <button onClick={() => removeFromCart(index)}>Remove</button>
+            </div>
+          ))}
+
+          <h3>Total: KSh {getTotal()}</h3>
+
+          <button className="whatsapp-btn" onClick={checkoutWhatsApp}>
+            Checkout via WhatsApp
+          </button>
+        </>
+      )}
     </div>
   );
 }

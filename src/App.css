@@ -219,3 +219,26 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+.cart-page {
+  padding: 40px;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+}
+
+.qty-controls button {
+  padding: 6px 12px;
+  margin: 0 5px;
+  border-radius: 8px;
+  border: none;
+  background: #ff66b3;
+  color: white;
+  cursor: pointer;
+}

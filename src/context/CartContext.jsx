@@ -6,7 +6,21 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   function addToCart(product) {
-    setCart([...cart, product]);
+    setCart([...cart, { ...product, qty: 1 }]);
+  }
+
+  function increaseQty(index) {
+    const updated = [...cart];
+    updated[index].qty += 1;
+    setCart(updated);
+  }
+
+  function decreaseQty(index) {
+    const updated = [...cart];
+    if (updated[index].qty > 1) {
+      updated[index].qty -= 1;
+    }
+    setCart(updated);
   }
 
   function removeFromCart(index) {
@@ -15,8 +29,21 @@ export function CartProvider({ children }) {
     setCart(updated);
   }
 
+  function getTotal() {
+    return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        increaseQty,
+        decreaseQty,
+        removeFromCart,
+        getTotal,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
