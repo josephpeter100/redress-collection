@@ -11,7 +11,7 @@ function Cart() {
   } = useContext(CartContext);
 
   function checkoutWhatsApp() {
-    const phoneNumber = "2547XXXXXXXX"; // replace
+    const phoneNumber = "254114448895";
 
     let message = "Hello, I would like to order:\n\n";
 
