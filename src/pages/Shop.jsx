@@ -8,16 +8,16 @@ function Shop() {
 
   return (
     <section className="products">
-      <h2>Shop Redress Collection</h2>
+      <h2>Shop</h2>
 
       <div className="grid">
-        {products.map((item) => (
+        {products.map((product) => (
           <ProductCard
-            key={item.id}
-            image={item.image}
-            name={item.name}
-            price={item.price}
-            onAdd={() => addToCart(item)}
+            key={product.id}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            onAdd={() => addToCart(product)}
           />
         ))}
       </div>
