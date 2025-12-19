@@ -1,10 +1,14 @@
-const categories = ["All", "Dresses", "Tops", "Bags"];
+function Categories({ active, setActive }) {
+  const categories = ["All", "Dresses", "Tops", "Bags"];
 
-function Categories({ setFilter }) {
   return (
     <section className="categories">
       {categories.map((cat) => (
-        <button key={cat} onClick={() => setFilter(cat)}>
+        <button
+          key={cat}
+          className={active === cat ? "category active" : "category"}
+          onClick={() => setActive(cat)}
+        >
           {cat}
         </button>
       ))}

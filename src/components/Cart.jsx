@@ -24,7 +24,7 @@ function Cart() {
     message += `\nTotal: KSh ${getTotal()}`;
 
     window.open(
-      `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+      `https://wa.me/254114448895?text=${encodeURIComponent(message)}`,
       "_blank"
     );
   }
