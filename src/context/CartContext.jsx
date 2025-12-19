@@ -6,8 +6,20 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
   function addToCart(product) {
-    setCart([...cart, { ...product, qty: 1 }]);
-  }
+  setCart(prev => {
+    const existing = prev.find(p => p.name === product.name);
+
+    if (existing) {
+      return prev.map(p =>
+        p.name === product.name
+          ? { ...p, quantity: (p.quantity || 1) + 1 }
+          : p
+      );
+    }
+
+    return [...prev, { ...product, quantity: 1 }];
+  });
+}
 
   function increaseQty(index) {
     const updated = [...cart];

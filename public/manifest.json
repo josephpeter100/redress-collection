@@ -1,0 +1,9 @@
+{
+  "name": "Redress Collection",
+  "short_name": "Redress",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff66b3",
+  "icons": []
+}
