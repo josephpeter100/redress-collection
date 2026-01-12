@@ -11,17 +11,16 @@ function addToCart(product) {
       (item) => item.id === product.id
     );
 
-    // If item already in cart → increase qty
     if (existingIndex !== -1) {
-      const updatedCart = [...prevCart];
-      updatedCart[existingIndex].qty += 1;
-      return updatedCart;
+      const updated = [...prevCart];
+      updated[existingIndex].qty += 1;
+      return updated;
     }
 
-    // If new item → add with qty = 1
     return [...prevCart, { ...product, qty: 1 }];
   });
 }
+
 
   function increaseQty(index) {
     const updated = [...cart];
