@@ -1,32 +1,31 @@
-import "./Cart.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 
 function Cart() {
-  const {
-    cart,
-    increaseQty,
-    decreaseQty,
-    removeFromCart,
-    getTotal,
-  } = useContext(CartContext);
+  const { cart, removeFromCart, getTotal } = useContext(CartContext);
+  const [note, setNote] = useState("");
 
   function checkoutWhatsApp() {
     const phoneNumber = "254114448895";
 
-    let message = "🛍️ *Redress Collection Order*\n\n";
+    let message = "Hello, I would like to order:\n\n";
 
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} x${item.qty} = KSh ${
+    cart.forEach((item, i) => {
+      message += `${i + 1}. ${item.name} x${item.qty} - KSh ${
         item.price * item.qty
       }\n`;
     });
 
-    message += `\n*Total: KSh ${getTotal()}*`;
+    message += `\nTotal: KSh ${getTotal()}`;
 
-    window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    if (note.trim()) {
+      message += `\n\nOrder Notes:\n${note}`;
+    }
+
+    window.open(
+      `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
   }
 
   return (
@@ -37,7 +36,7 @@ function Cart() {
         <p>Your cart is empty</p>
       ) : (
         <>
-          {cart.map((item, index) => (
+           {cart.map((item, index) => (
             <div className="cart-row" key={index}>
               <p>{item.name}</p>
 
@@ -56,7 +55,14 @@ function Cart() {
                 Remove
               </button>
             </div>
-          ))}
+          ))} 
+
+          <textarea
+            placeholder="Add size, color, delivery location, or notes..."
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            className="order-note"
+          />
 
           <h3>Total: KSh {getTotal()}</h3>
 
