@@ -3,22 +3,22 @@ const products = [
     id: 1,
     name: "Pink Silk Dress",
     price: 650,
-    image: "https://i.imgur.com/eN9lueN.jpeg",
     category: "Dresses",
+    image: "https://i.imgur.com/eN9lueN.jpeg",
   },
   {
     id: 2,
     name: "Soft White Top",
     price: 300,
-    image: "https://i.imgur.com/3qWcLxg.jpeg",
     category: "Tops",
+    image: "https://i.imgur.com/3qWcLxg.jpeg",
   },
   {
     id: 3,
     name: "Shoulder Bag",
     price: 500,
-    image: "https://i.imgur.com/Yx2Jssz.jpeg",
     category: "Bags",
+    image: "https://i.imgur.com/Yx2Jssz.jpeg",
   },
 ];
 
