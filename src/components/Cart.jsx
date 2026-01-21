@@ -23,10 +23,11 @@ function Cart() {
 
     message += `\nTotal: KSh ${getTotal()}`;
 
-    window.open(
-      `https://wa.me/254114448895?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank");
   }
 
   return (
@@ -39,7 +40,7 @@ function Cart() {
         <>
           {cart.map((item, index) => (
             <div className="cart-row" key={index}>
-              <p>{item.name}</p>
+              <p className="cart-name">{item.name}</p>
 
               <div className="qty-controls">
                 <button onClick={() => decreaseQty(index)}>-</button>
@@ -47,9 +48,16 @@ function Cart() {
                 <button onClick={() => increaseQty(index)}>+</button>
               </div>
 
-              <span>KSh {item.price * item.qty}</span>
+              <span className="cart-price">
+                KSh {item.price * item.qty}
+              </span>
 
-              <button onClick={() => removeFromCart(index)}>Remove</button>
+              <button
+                className="remove-btn"
+                onClick={() => removeFromCart(index)}
+              >
+                Remove
+              </button>
             </div>
           ))}
 

@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
+import "./Header.css";
 
-function Header({ cartCount, openCart }) {
+function Header() {
   return (
     <header className="header">
-      <h1 className="logo">Redress Collection</h1>
+      <Link to="/" className="logo-wrap">
+        <img src={logo} alt="Redress Collection" className="logo-img" />
+        <span className="logo-text">Redress Collection</span>
+      </Link>
 
       <nav className="nav">
         <Link to="/">Home</Link>
         <Link to="/shop">Shop</Link>
-        <Link to="/cart">Cart ({cartCount})</Link>
+        <Link to="/cart">Cart</Link>
       </nav>
     </header>
   );

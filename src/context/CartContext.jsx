@@ -7,9 +7,11 @@ export function CartProvider({ children }) {
 
   function addToCart(product) {
     setCart(prevCart => {
-      const existing = prevCart.find(item => item.id === product.id);
+      const existingItem = prevCart.find(
+        item => item.id === product.id
+      );
 
-      if (existing) {
+      if (existingItem) {
         return prevCart.map(item =>
           item.id === product.id
             ? { ...item, qty: item.qty + 1 }
@@ -22,16 +24,16 @@ export function CartProvider({ children }) {
   }
 
   function increaseQty(index) {
-    setCart(cart =>
-      cart.map((item, i) =>
+    setCart(prev =>
+      prev.map((item, i) =>
         i === index ? { ...item, qty: item.qty + 1 } : item
       )
     );
   }
 
   function decreaseQty(index) {
-    setCart(cart =>
-      cart
+    setCart(prev =>
+      prev
         .map((item, i) =>
           i === index ? { ...item, qty: item.qty - 1 } : item
         )
@@ -40,11 +42,14 @@ export function CartProvider({ children }) {
   }
 
   function removeFromCart(index) {
-    setCart(cart => cart.filter((_, i) => i !== index));
+    setCart(prev => prev.filter((_, i) => i !== index));
   }
 
   function getTotal() {
-    return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    return cart.reduce(
+      (sum, item) => sum + item.price * item.qty,
+      0
+    );
   }
 
   return (

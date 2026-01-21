@@ -1,11 +1,11 @@
-function ProductCard({ image, name, price, onAdd }) {
+function ProductCard({ product, onAdd }) {
   return (
     <div className="item">
-      <img src={image} alt={name} />
-      <p>{name}</p>
-      <span>KSh {price}</span>
+      <img src={product.image} alt={product.name} />
+      <p>{product.name}</p>
+      <span>KSh {product.price}</span>
 
-      <button className="add-btn" onClick={onAdd}>
+      <button className="add-btn" onClick={() => onAdd(product)}>
         Add to Cart
       </button>
     </div>

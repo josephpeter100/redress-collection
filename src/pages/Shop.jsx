@@ -20,13 +20,12 @@ function Shop() {
       <section className="products">
         <div className="grid">
           {filteredProducts.map(product => (
-            <ProductCard
-              key={product.id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              onAdd={() => addToCart(product)}
-            />
+           <ProductCard
+  key={product.id}
+  product={product}
+  onAdd={addToCart}
+/>
+
           ))}
         </div>
       </section>
