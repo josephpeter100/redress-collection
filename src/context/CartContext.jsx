@@ -5,41 +5,42 @@ export const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-function addToCart(product) {
-  setCart((prevCart) => {
-    const existingIndex = prevCart.findIndex(
-      (item) => item.id === product.id
-    );
+  function addToCart(product) {
+    setCart(prevCart => {
+      const existing = prevCart.find(item => item.id === product.id);
 
-    if (existingIndex !== -1) {
-      const updated = [...prevCart];
-      updated[existingIndex].qty += 1;
-      return updated;
-    }
+      if (existing) {
+        return prevCart.map(item =>
+          item.id === product.id
+            ? { ...item, qty: item.qty + 1 }
+            : item
+        );
+      }
 
-    return [...prevCart, { ...product, qty: 1 }];
-  });
-}
-
+      return [...prevCart, { ...product, qty: 1 }];
+    });
+  }
 
   function increaseQty(index) {
-    const updated = [...cart];
-    updated[index].qty += 1;
-    setCart(updated);
+    setCart(cart =>
+      cart.map((item, i) =>
+        i === index ? { ...item, qty: item.qty + 1 } : item
+      )
+    );
   }
 
   function decreaseQty(index) {
-    const updated = [...cart];
-    if (updated[index].qty > 1) {
-      updated[index].qty -= 1;
-    }
-    setCart(updated);
+    setCart(cart =>
+      cart
+        .map((item, i) =>
+          i === index ? { ...item, qty: item.qty - 1 } : item
+        )
+        .filter(item => item.qty > 0)
+    );
   }
 
   function removeFromCart(index) {
-    const updated = [...cart];
-    updated.splice(index, 1);
-    setCart(updated);
+    setCart(cart => cart.filter((_, i) => i !== index));
   }
 
   function getTotal() {
