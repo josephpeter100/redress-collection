@@ -37,3 +37,11 @@
 .whatsapp-btn:hover {
   background: #1ebe5d;
 }
+.order-note {
+  width: 100%;
+  min-height: 80px;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
