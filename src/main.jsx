@@ -1,16 +1,15 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { CartProvider } from "./context/CartContext";
-import { AuthProvider } from "./context/AuthContext";
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <AuthProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </AuthProvider>
-  </StrictMode>
-);
+function ProtectedRoute({ children }) {
+  const { admin } = useContext(AuthContext);
+
+  if (!admin) {
+    return <Navigate to="/admin-login" replace />;
+  }
+
+  return children;
+}
+
+export default ProtectedRoute;
