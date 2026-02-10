@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import products from "../data/products";
+import { useState, useContext, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import Categories from "../components/Categories";
 import { CartContext } from "../context/CartContext";
@@ -7,8 +6,14 @@ import { CartContext } from "../context/CartContext";
 function Shop() {
   const { addToCart } = useContext(CartContext);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [products, setProducts] = useState([]);
 
-  const filteredProducts =
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("products")) || [];
+    setProducts(stored);
+  }, []);
+
+  const filtered =
     activeCategory === "All"
       ? products
       : products.filter(p => p.category === activeCategory);
@@ -19,17 +24,16 @@ function Shop() {
 
       <section className="products">
         <div className="grid">
-          {filteredProducts.map(product => (
-           <ProductCard
-  key={product.id}
-  product={product}
-  onAdd={addToCart}
-/>
-
+          {filtered.map(product => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAdd={addToCart}
+            />
           ))}
         </div>
       </section>
-    </>a
+    </>
   );
 }
 
