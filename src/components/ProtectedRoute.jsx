@@ -3,9 +3,13 @@ import { Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function ProtectedRoute({ children }) {
-  const { isAdmin } = useContext(AuthContext);
+  const { admin } = useContext(AuthContext);
 
-  return isAdmin ? children : <Navigate to="/admin-login" />;
+  if (!admin) {
+    return <Navigate to="/admin-login" replace />;
+  }
+
+  return children;
 }
 
 export default ProtectedRoute;

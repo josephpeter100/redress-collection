@@ -314,3 +314,25 @@ html, body {
   margin-top: 8px;
   cursor: pointer;
 }
+.admin-page {
+  padding: 20px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.admin-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.admin-product img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
